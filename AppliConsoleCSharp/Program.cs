@@ -1,4 +1,11 @@
-﻿using System;
+﻿/** Ciprian DRAGULESCU 22 avril 2020
+  *
+  * programme c# console pour tester l'interoperabilite entre code manage et non manage
+  *
+  * C# console program to test the interoperability between managed and unmanaged code
+  */
+
+using System;
 using System.Runtime.InteropServices;
 
 namespace AppliConsoleCSharp
@@ -24,15 +31,17 @@ namespace AppliConsoleCSharp
         static void Main(string[] args)
         {
             int i = intNext(5);
+            Console.WriteLine("Hello World! " + i);
+
             IntPtr ptrChars = testString();
             String s = Marshal.PtrToStringAnsi(ptrChars);
             freeNonManage(ptrChars);
+            Console.WriteLine(s);
+
             IntPtr mem = Marshal.AllocHGlobal(sizeof(char) * 22);
             remplirMemoireChaine(mem, 22);
             String s2 = Marshal.PtrToStringAnsi(mem);
             Marshal.FreeHGlobal(mem);
-            Console.WriteLine("Hello World! " + i);
-            Console.WriteLine(s);
             Console.WriteLine(s2);
         }
     }
